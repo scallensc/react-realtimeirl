@@ -1,0 +1,65 @@
+.weather-container {
+  overflow: visible;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  right: 10px;
+  top: 90px;
+  text-align: right;
+
+  font-family: 'Anek Latin', sans-serif;
+
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.weather-icon {
+  display: inline-flex;
+  & svg {
+    overflow: visible;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    width: 2em;
+    height: 2em;
+    top: 0.15em;
+    position: relative;
+  }
+}
+
+.min-icon {
+  display: inline-flex;
+  & svg {
+    overflow: visible;
+    width: 1.5em;
+    height: 1.5em;
+    top: 0.4em;
+    position: relative;
+  }
+}
+
+.max-icon {
+  display: inline-flex;
+  & svg {
+    overflow: visible;
+    width: 1.5em;
+    height: 1.5em;
+    top: 0.4em;
+    position: relative;
+  }
+}
+
+.conditions {
+  font-size: 24px;
+}
+
+.min-max {
+  font-size: 24px;
+}
+
+.current-weather {
+  padding-top: 10px;
+  font-size: 24px;
+}

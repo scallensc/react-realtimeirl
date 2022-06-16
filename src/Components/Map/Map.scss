@@ -1,0 +1,24 @@
+.map-container {
+  position: absolute;
+  width: 310px;
+  height: fit-content;
+  bottom: 5px;
+  right: 5px;
+}
+
+.marker {
+  background-color: cyan;
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  border-radius: 50%;
+  top: 148px;
+  left: 150px;
+  box-shadow: 0 0 10px cyan;
+  z-index: 400;
+}
+
+.leaflet-container {
+  width: 310px;
+  height: 310px;
+}
