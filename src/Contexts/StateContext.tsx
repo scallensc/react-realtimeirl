@@ -284,7 +284,7 @@ const StateContextProvider = (props: any) => {
         setState((state) => ({
           ...state,
           headingCardinal: cardinal,
-          headingDegrees: heading,
+          headingDegrees: heading ? heading : 0,
         }));
       }
     });
