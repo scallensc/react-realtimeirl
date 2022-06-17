@@ -77,7 +77,16 @@ const StateContextProvider = (props: any) => {
     return ref.current;
   };
 
+  const usePreviousSessionId = (value: string): string => {
+    const ref = useRef('');
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  };
+
   const prevLocation = usePreviousLocation(state.location);
+  const prevSessionId = usePreviousSessionId(state.sessionId);
 
   const getNeighbourhood = () => {
     mbxGeocode
@@ -324,12 +333,33 @@ const StateContextProvider = (props: any) => {
     // eslint-disable-next-line
   }, [state.locationData]);
 
-  function getDistanceFromLatLonInKm(
+  useEffect(() => {
+    forPullKey(state.pullKey).addSessionIdListener((sessionId) => {
+      if (sessionId && sessionId !== state.sessionId) {
+        setState((state) => ({
+          ...state,
+          sessionId: sessionId,
+        }));
+      }
+    });
+    //eslint-disable-next-line
+  }, []);
+
+  //eslint-disable-next-line
+  useEffect(() => {
+    if (prevSessionId && state.sessionId) {
+      if (prevSessionId !== state.sessionId) {
+        setState((state) => ({ ...state, totalDistance: 0 }));
+      }
+    }
+  });
+
+  const getDistanceFromLatLonInKm = (
     lat1: number,
     lon1: number,
     lat2: number,
     lon2: number
-  ) {
+  ) => {
     var R = 6371; // Radius of the earth in km
     var dLat = deg2rad(lat2 - lat1); // deg2rad below
     var dLon = deg2rad(lon2 - lon1);
@@ -342,23 +372,11 @@ const StateContextProvider = (props: any) => {
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c; // Distance in km
     return d;
-  }
+  };
 
-  function deg2rad(deg: number) {
+  const deg2rad = (deg: number) => {
     return deg * (Math.PI / 180);
-  }
-
-  useEffect(() => {
-    forPullKey(state.pullKey).addSessionIdListener((sessionId) => {
-      if (sessionId && sessionId !== state.sessionId) {
-        setState((state) => ({
-          ...state,
-          sessionId: sessionId,
-        }));
-      }
-    });
-    //eslint-disable-next-line
-  }, []);
+  };
 
   // eslint-disable-next-line
   useEffect(() => {
