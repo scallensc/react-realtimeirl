@@ -71,7 +71,7 @@ To build, just run `yarn build` from the root of the project folder. copy the bu
 
 ## URL format for hosted version:
 
-https://rlal.net/?timezoneKey=KEYHERE&mapboxKey=KEYHERE&pullKey=KEYHERE&weatherKey=KEYHERE.....etc.....&metrics=1
+https://rlal.net/?timezoneKey=KEYHERE&mapboxKey=KEYHERE&pullKey=KEYHERE&weatherKey=KEYHERE&attribution=1.....etc.....&metrics=1
 
 ### Mandatory params:
 
@@ -79,6 +79,7 @@ https://rlal.net/?timezoneKey=KEYHERE&mapboxKey=KEYHERE&pullKey=KEYHERE&weatherK
 - mapboxKey : https://www.mapbox.com/ - generate a public token, not private
 - pullKey : https://rtirl.com/ - generate your pull key here
 - weatherKey : https://openweathermap.org/ - genrate an API key here
+- attribution : leaflet and their theme providers require this to be set to on, so you should set this to 1
 
 ### Optional params (metrics):
 

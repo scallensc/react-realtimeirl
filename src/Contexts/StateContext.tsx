@@ -57,9 +57,12 @@ const StateContextProvider = (props: any) => {
     date: '',
     time: '',
     speed: 0,
-    altitude: 69,
-    headingCardinal: 'NE',
-    headingDegrees: 420,
+    altitude: {
+      EGM96: 0,
+      WGS84: 0,
+    },
+    headingCardinal: '',
+    headingDegrees: 0,
     heartRate: 0,
     totalDistance: 0,
     sessionId: '',
@@ -244,10 +247,14 @@ const StateContextProvider = (props: any) => {
 
   useEffect(() => {
     forPullKey(state.pullKey).addAltitudeListener((alt: any) => {
-      if (!isEmpty(alt) && state.altitude !== alt['EGM96']) {
+      if (
+        !isEmpty(alt) &&
+        state.altitude['EGM96'] !== alt['EGM96'] &&
+        state.altitude['WGS84'] !== alt['WGS84']
+      ) {
         setState((state) => ({
           ...state,
-          altitude: alt['EGM96'],
+          altitude: { ...alt },
         }));
       }
     });

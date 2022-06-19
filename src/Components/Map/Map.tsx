@@ -15,6 +15,7 @@ import './Map.scss';
 const queryParams = new URLSearchParams(window.location.search);
 const leafletProviderKey = process.env.REACT_APP_LEAFLET_PROVIDER_KEY || queryParams.get('leafletProviderKey') || ''; // prettier-ignore
 const themeInput = queryParams.get('theme') || '';
+const attribution = queryParams.get('attribution') ? true : false;
 
 interface IProps {
   animateRef: { current: {} };
@@ -60,7 +61,12 @@ function Map() {
     theme && (
       <div className="map-container">
         <Timedate />
-        <MapContainer center={center} zoom={zoom} zoomControl={false}>
+        <MapContainer
+          center={center}
+          zoom={zoom}
+          zoomControl={false}
+          attributionControl={attribution}
+        >
           <TileLayer url={theme.url} {...theme.options} />
           <div className="marker" />
           <MapPosition animateRef={animateRef} center={center} zoom={zoom} />

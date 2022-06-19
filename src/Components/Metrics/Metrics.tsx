@@ -24,7 +24,7 @@ const OtherMetrics = () => {
   return (
     <div className="other-container" style={{display:metrics ? '' : 'none'}}>
       <div className="heart-text" style={{display:heartrate ? '' : 'none'}}>{state.heartRate === 0 ? `Heartrate: ${state.heartRate} bpm` : ''}</div>
-      <div className="altitude-text" style={{display:altitude ? '' : 'none'}}>Altitude: {state.imperial ? `${(state.altitude * 3.281).toFixed(0)} ft` : `${state.altitude.toFixed(0)} m`}</div>
+      <div className="altitude-text" style={{display:altitude ? '' : 'none'}}>Altitude: {state.imperial ? `${(Math.abs((state.altitude['EGM96'] - state.altitude['WGS84']) / 2 ) * 3.281).toFixed(0)} ft` : `${Math.abs((state.altitude['EGM96'] - state.altitude['WGS84']) / 2 ).toFixed(0)} m`}</div>
       <div className="speed-text" style={{display:speed ? '' : 'none', paddingBottom: speedPad ? '20px' : ''}}>Speed: {state.imperial ? `${(state.speed / 1.609).toFixed()} mp/h` : `${(state.speed).toFixed()} km/h`}</div>
       <div className="distance-text" style={{display:distance ? '' : 'none'}}>{state.imperial ? `Total distance: ${(state.totalDistance / 1.609).toFixed(2)} mi` : `Total distance: ${(state.totalDistance).toFixed(2)} km`}</div>
       <div className="heading-text" style={{display:heading ? '' : 'none'}}>Heading: {state.headingCardinal} - {`${state.headingDegrees.toFixed()}°`}</div>
