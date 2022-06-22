@@ -7,13 +7,14 @@
 }
 
 .marker {
+  position: absolute;
   background-color: cyan;
   height: 15px;
   width: 15px;
   position: absolute;
   border-radius: 50%;
-  top: 148px;
-  left: 150px;
+  top: 48%;
+  left: 48%;
   box-shadow: 0 0 10px cyan;
   z-index: 400;
 }

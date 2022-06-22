@@ -4,6 +4,7 @@ import { stateContext } from 'Contexts/StateContext';
 import { MapContainer, TileLayer } from 'react-leaflet';
 //@ts-ignore
 import { useMap } from 'react-leaflet/hooks';
+
 import { LatLngExpression } from 'leaflet';
 
 import Timedate from 'Components/Timedate/Timedate';
@@ -68,8 +69,8 @@ function Map() {
           attributionControl={attribution}
         >
           <TileLayer url={theme.url} {...theme.options} />
-          <div className="marker" />
           <MapPosition animateRef={animateRef} center={center} zoom={zoom} />
+          <div className="marker" />
         </MapContainer>
       </div>
     )
