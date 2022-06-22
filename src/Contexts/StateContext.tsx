@@ -270,16 +270,7 @@ const StateContextProvider = (props: any) => {
     //eslint-disable-next-line
   }, []);
 
-  let compass = [
-    'N - ↑',
-    'NE - ↗',
-    'E - →',
-    'SE - ↘',
-    'S - ↓',
-    'SW - ↙',
-    'W - ←',
-    'NW - ↖',
-  ];
+  let compass = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 
   useEffect(() => {
     forPullKey(state.pullKey).addHeadingListener((heading) => {
