@@ -293,11 +293,7 @@ const StateContextProvider = (props: any) => {
     if (state.location.latitude !== 0) {
       if (isEmpty(state.locationData)) {
         fetch(
-          'https://api.openweathermap.org/data/2.5/weather?lat=' +
-            state.location.latitude +
-            '&lon=' +
-            state.location.longitude +
-            `&appid=${state.weatherKey}`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${state.location.latitude}&lon=${state.location.longitude}&appid=${state.weatherKey}`
         )
           .then((response) => {
             return response.json();
