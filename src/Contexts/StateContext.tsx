@@ -344,6 +344,7 @@ const StateContextProvider = (props: any) => {
     if (prevSessionId && state.sessionId) {
       if (prevSessionId !== state.sessionId) {
         setState((state) => ({ ...state, totalDistance: 0 }));
+        console.warn('TOTAL DISTANCE RESET - SESSION ID CHANGE');
       }
     }
   });
