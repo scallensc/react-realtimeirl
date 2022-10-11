@@ -70,7 +70,7 @@ const StateContextProvider = (props: any) => {
     headingDegrees: 0,
     heartRate: 0,
     totalDistance: 0,
-    sessionId: 'placeholder',
+    sessionId: '',
     imperial: imperial || '',
   });
 
@@ -90,7 +90,9 @@ const StateContextProvider = (props: any) => {
     useEffect(() => {
       ref.current = value;
     });
-    !value && console.warn('NO SESSION ID, TOTAL DISTANCE UNAVAILABLE');
+    state.debug &&
+      !value &&
+      console.warn('NO SESSION ID, TOTAL DISTANCE UNAVAILABLE');
     return ref.current;
   };
 
