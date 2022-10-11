@@ -17,6 +17,8 @@ let [pullKey, mapboxKey, mapZoom, weatherKey, timezoneKey] = [
   '',
 ];
 
+let debug = false;
+
 const queryParams = new URLSearchParams(window.location.search);
 
 mapboxKey = process.env.REACT_APP_MAPBOX_KEY || queryParams.get('mapboxKey') || ''; // prettier-ignore
@@ -24,6 +26,7 @@ mapZoom = queryParams.get('zoom') || '13'; // prettier-ignore
 pullKey = process.env.REACT_APP_PULL_KEY || queryParams.get('pullKey') || ''; // prettier-ignore
 timezoneKey = process.env.REACT_APP_TIMEZONE_KEY || queryParams.get('timezoneKey') || ''; // prettier-ignore
 weatherKey = process.env.REACT_APP_OPENWEATHER_KEY || queryParams.get('weatherKey') || ''; // prettier-ignore
+debug = queryParams.get('debug') ? true : false; // prettier-ignore
 
 const imperial = queryParams.get('imperial');
 
@@ -37,6 +40,7 @@ let sessionDistance = 0;
 
 const StateContextProvider = (props: any) => {
   const [state, setState] = useState({
+    debug: debug,
     timezoneKey: timezoneKey,
     mapboxKey: mapboxKey,
     mapZoom: mapZoom,
@@ -56,6 +60,7 @@ const StateContextProvider = (props: any) => {
     neighbourhood: '',
     date: '',
     time: '',
+    datetime: '',
     speed: 0,
     altitude: {
       EGM96: 0,
@@ -65,7 +70,7 @@ const StateContextProvider = (props: any) => {
     headingDegrees: 0,
     heartRate: 0,
     totalDistance: 0,
-    sessionId: '',
+    sessionId: 'placeholder',
     imperial: imperial || '',
   });
 
@@ -85,6 +90,7 @@ const StateContextProvider = (props: any) => {
     useEffect(() => {
       ref.current = value;
     });
+    !value && console.warn('NO SESSION ID, TOTAL DISTANCE UNAVAILABLE');
     return ref.current;
   };
 
@@ -215,15 +221,25 @@ const StateContextProvider = (props: any) => {
 
   useEffect(() => {
     const lang = 'en';
-    const date = 'ccc, MMM dd, yyyy | HH:mm:ss';
+    const date = 'ccc, MMM dd, yyyy';
+    const time = 'HH:mm:ss';
+    const datetime = 'ccc, MMM dd, yyyy | HH:mm:ss';
     if (!isEmpty(state.zoneId)) {
       const dateInterval = setInterval(() => {
         setState((state) => ({
           ...state,
+          time: luxon.DateTime.now()
+            .setZone(state.zoneId)
+            .setLocale(lang)
+            .toFormat(time),
           date: luxon.DateTime.now()
             .setZone(state.zoneId)
             .setLocale(lang)
             .toFormat(date),
+          datetime: luxon.DateTime.now()
+            .setZone(state.zoneId)
+            .setLocale(lang)
+            .toFormat(datetime),
         }));
       }, 1000);
       return () => {
@@ -330,6 +346,7 @@ const StateContextProvider = (props: any) => {
   useEffect(() => {
     forPullKey(state.pullKey).addSessionIdListener((sessionId) => {
       if (sessionId && sessionId !== state.sessionId) {
+        state.debug && console.log(`SESSION ID ESTABLISHED: ${sessionId}`);
         setState((state) => ({
           ...state,
           sessionId: sessionId,
@@ -344,7 +361,8 @@ const StateContextProvider = (props: any) => {
     if (prevSessionId && state.sessionId) {
       if (prevSessionId !== state.sessionId) {
         setState((state) => ({ ...state, totalDistance: 0 }));
-        console.warn('TOTAL DISTANCE RESET - SESSION ID CHANGE');
+        state.debug &&
+          console.warn(`NEW SESSION ID: ${state.sessionId} - DISTANCE RESET`);
       }
     }
   });
@@ -391,6 +409,7 @@ const StateContextProvider = (props: any) => {
     }
     if (state.totalDistance !== sessionDistance) {
       setState((state) => ({ ...state, totalDistance: sessionDistance }));
+      state.debug && console.log(`DISTANCE CHANGE: ${sessionDistance}`);
     }
   });
 

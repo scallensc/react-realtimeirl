@@ -7,7 +7,7 @@ const Timedate = () => {
   const [state] = useContext(stateContext);
   return (
     <div className="time-container">
-      {[...state.date].map((char, i) =>
+      {[...state.datetime].map((char, i) =>
         char === ':' ? (
           char
         ) : (
