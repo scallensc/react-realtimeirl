@@ -13,10 +13,13 @@ import themeChooser from 'Functions/themeChooser';
 
 import './Map.scss';
 
-const queryParams = new URLSearchParams(window.location.search);
-const leafletProviderKey = process.env.REACT_APP_LEAFLET_PROVIDER_KEY || queryParams.get('leafletProviderKey') || ''; // prettier-ignore
+const queryParams: { [Value: string]: any } = new URLSearchParams(window.location.search); // prettier-ignore
+
+const attribution = parseInt(queryParams.get('attribution'));
+const mapEnabled = parseInt(queryParams.get('map'));
 const themeInput = queryParams.get('theme') || '';
-const attribution = queryParams.get('attribution') ? true : false;
+
+const leafletProviderKey = process.env.REACT_APP_LEAFLET_PROVIDER_KEY || queryParams.get('leafletProviderKey') || ''; // prettier-ignore
 
 interface IProps {
   animateRef: { current: {} };
@@ -62,16 +65,20 @@ function Map() {
     theme && (
       <div className="map-container">
         <Timedate />
-        <MapContainer
-          center={center}
-          zoom={zoom}
-          zoomControl={false}
-          attributionControl={attribution}
-        >
-          <TileLayer url={theme.url} {...theme.options} />
-          <MapPosition animateRef={animateRef} center={center} zoom={zoom} />
-          <div className="marker" />
-        </MapContainer>
+        {mapEnabled ? (
+          <MapContainer
+            center={center}
+            zoom={zoom}
+            zoomControl={false}
+            attributionControl={attribution ? true : false}
+          >
+            <TileLayer url={theme.url} {...theme.options} />
+            <MapPosition animateRef={animateRef} center={center} zoom={zoom} />
+            <div className="marker" />
+          </MapContainer>
+        ) : (
+          <div />
+        )}
       </div>
     )
   );

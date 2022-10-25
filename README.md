@@ -81,19 +81,31 @@ https://rlal.net/?timezoneKey=KEYHERE&mapboxKey=KEYHERE&pullKey=KEYHERE&weatherK
 - weatherKey : https://openweathermap.org/ - genrate an API key here
 - attribution : leaflet and their theme providers require this to be set to on, so you should set this to 1
 
-### Optional params (metrics):
+### Optional params ():
+
+- map map= 1 || 0 - enable or disable map display
+  `https://rlal.net/?mandatorystuff....&map=1`
 
 - metrics - enable or disable metrics - metrics= 1 || 0
+  `https://rlal.net/?mandatorystuff....&metrics=1`
 
   - altitude - altitude= 1 || 0
-  - distance - distance= 1 || 0
-  - heading - heading= 1 || 0
-  - heartrate - heartrate= 1 || 0
-  - speed - speed= 1 || 0
-  - imperial - imperial= 1 || 0 - use imperial units instead of metric
+    `https://rlal.net/?mandatorystuff....&altitude=1`
 
-e.g.:  
-https://rlal.net/?timezoneKey=KEYHERE.....etc.....&metrics=1&speed=1
+  - distance - distance= 1 || 0
+    `https://rlal.net/?mandatorystuff....&distance=1`
+
+  - heading - heading= 1 || 0
+    `https://rlal.net/?mandatorystuff....&heading=1`
+
+  - heartrate - heartrate= 1 || 0
+    `https://rlal.net/?mandatorystuff....&heartrate=1`
+
+  - speed - speed= 1 || 0
+    `https://rlal.net/?mandatorystuff....&speed=1`
+
+  - imperial - imperial= 1 || 0 - use imperial units instead of metric
+    `https://rlal.net/?mandatorystuff....&imperial=1`
 
 <br/>
 
