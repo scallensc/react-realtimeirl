@@ -4,6 +4,7 @@
   "license": "UNLICENSED",
   "description": "Realtime IRL API overlays",
   "dependencies": {
+    "@humanwhocodes/config-array": "^0.11.6",
     "@mapbox/mapbox-sdk": "^0.13.3",
     "@rtirl/api": "^1.1.4",
     "@testing-library/jest-dom": "^5.14.1",
@@ -16,6 +17,8 @@
     "@types/react-dom": "^18.0.5",
     "@types/react-transition-group": "^4.4.4",
     "d3-color": "^3.1.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.10",
     "leaflet": "^1.8.0",
     "luxon": "^2.4.0",
     "react": "^18.1.0",
