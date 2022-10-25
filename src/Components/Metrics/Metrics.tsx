@@ -28,7 +28,7 @@ const OtherMetrics = () => {
       <div className="heart-text" style={{display:heartrate ? '' : 'none'}}>{state.heartRate === 0 ? `Heartrate: ${state.heartRate} bpm` : ''}</div>
       <div className="altitude-text" style={{display:altitude ? '' : 'none'}}>Altitude: {state.imperial ? `${(Math.abs((state.altitude['EGM96'] - state.altitude['WGS84']) / 2 ) * 3.281).toFixed(0)} ft` : `${Math.abs((state.altitude['EGM96'] - state.altitude['WGS84']) / 2 ).toFixed(0)} m`}</div>
       <div className="speed-text" style={{display:speed ? '' : 'none', paddingBottom: speedPad ? '8px' : ''}}>Speed: {state.imperial ? `${(state.speed / 1.609).toFixed()} mp/h` : `${(state.speed).toFixed()} km/h`}</div>
-      <div className="distance-text" style={{display:distance ? '' : 'none'}}>{state.imperial ? `Total distance: ${(state.totalDistance / 1.609).toFixed(2)} mi` : `Total distance: ${(state.totalDistance).toFixed(2)} km`}</div>
+      <div className="distance-text" style={{display:distance ? '' : 'none'}}>{state.imperial ? `Total distance: ${(state.totalDistance / 1.609).toFixed(2)} mi` : `Distance: ${(state.totalDistance).toFixed(2)} km`}</div>
       <div className="heading-text" style={{display:heading ? '' : 'none'}}>Heading:&nbsp;     
         <div className="compass-icon">
           <SvgLoader 
