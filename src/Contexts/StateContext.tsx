@@ -74,6 +74,7 @@ const StateContextProvider = (props: any) => {
     imperial: imperial || '',
   });
 
+  // Custom hook with ref for previous value - used in distance calculation
   const usePreviousLocation = (value: {
     latitude: number;
     longitude: number;
@@ -85,6 +86,7 @@ const StateContextProvider = (props: any) => {
     return ref.current;
   };
 
+  // Custom hook with ref for previous session ID - used in distance calculation
   const usePreviousSessionId = (value: string): string => {
     const ref = useRef('');
     useEffect(() => {
@@ -99,6 +101,7 @@ const StateContextProvider = (props: any) => {
   const prevLocation = usePreviousLocation(state.location);
   const prevSessionId = usePreviousSessionId(state.sessionId);
 
+  // Get neighbourhood data, format and update state
   const getNeighbourhood = () => {
     mbxGeocode
       .reverseGeocode({
@@ -163,6 +166,7 @@ const StateContextProvider = (props: any) => {
       });
   };
 
+  // Fetch timezone offset from location data once populated
   const refreshTzOffset = () => {
     fetch(
       `https://api.timezonedb.com/v2.1/get-time-zone?key=${state.timezoneKey}&format=json&by=position&lat=${state.location.latitude}&lng=${state.location.longitude}`
@@ -330,7 +334,7 @@ const StateContextProvider = (props: any) => {
         .then((json) => {
           setState((state) => ({ ...state, locationData: { ...json } }));
         });
-      console.time('weather refresh');
+      state.debug && console.log('weather refresh');
     }, 5000);
     return () => {
       clearInterval(locationInterval);
