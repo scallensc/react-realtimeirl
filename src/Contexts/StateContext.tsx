@@ -175,6 +175,7 @@ const StateContextProvider = (props: any) => {
       });
   };
 
+  // Add location listener - update state on location change
   useEffect(() => {
     forPullKey(state.pullKey).addLocationListener((location) => {
       if (location) {
@@ -194,6 +195,7 @@ const StateContextProvider = (props: any) => {
     // eslint-disable-next-line
   }, []);
 
+  // Get neighbourhood data from mapbox every 5 seconds
   useEffect(() => {
     const mapboxInterval = setInterval(() => {
       getNeighbourhood();
@@ -204,6 +206,7 @@ const StateContextProvider = (props: any) => {
     // eslint-disable-next-line
   }, [state.location, state.neighbourhood]);
 
+  // Call refresh timezone offset function on location change if zoneId not already set
   useEffect(() => {
     if (state.location.latitude && !state.zoneId) {
       refreshTzOffset();
@@ -211,6 +214,7 @@ const StateContextProvider = (props: any) => {
     // eslint-disable-next-line
   }, [state.location]);
 
+  // Refresh timezone offset every 5 seconds
   useEffect(() => {
     const tzInterval = setInterval(() => {
       refreshTzOffset();
@@ -221,6 +225,7 @@ const StateContextProvider = (props: any) => {
     // eslint-disable-next-line
   }, [state.zoneId]);
 
+  // Get date and time data once zoneId established, format and update state
   useEffect(() => {
     const lang = 'en';
     const date = 'ccc, MMM dd, yyyy';
@@ -251,6 +256,7 @@ const StateContextProvider = (props: any) => {
     // eslint-disable-next-line
   }, [state.zoneId]);
 
+  // Add speed listener, update state
   useEffect(() => {
     forPullKey(state.pullKey).addSpeedListener((speed) => {
       if (speed && state.speed !== speed) {
@@ -263,6 +269,7 @@ const StateContextProvider = (props: any) => {
     // eslint-disable-next-line
   }, []);
 
+  // Add altitude listener, update state
   useEffect(() => {
     forPullKey(state.pullKey).addAltitudeListener((alt: any) => {
       if (
@@ -279,6 +286,7 @@ const StateContextProvider = (props: any) => {
     //eslint-disable-next-line
   }, []);
 
+  // Add heartrate listener, update state
   useEffect(() => {
     forPullKey(state.pullKey).addHeartRateListener((rate) => {
       if (rate && state.heartRate !== rate) {
@@ -288,8 +296,10 @@ const StateContextProvider = (props: any) => {
     //eslint-disable-next-line
   }, []);
 
+  // Array of cardinal directions for compass use
   let compass = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 
+  // Add heading listener, update state with cardinal direction and bearing in degrees
   useEffect(() => {
     forPullKey(state.pullKey).addHeadingListener((heading) => {
       const cardinal = compass[(((heading + 22.5) % 360) / 45) | 0];
@@ -307,30 +317,12 @@ const StateContextProvider = (props: any) => {
     //eslint-disable-next-line
   }, []);
 
+  // Get weather updates every 5 seconds, update state
   useEffect(() => {
-    if (state.location.latitude !== 0) {
-      if (isEmpty(state.locationData)) {
-        fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${state.location.latitude}&lon=${state.location.longitude}&appid=${state.weatherKey}`
-        )
-          .then((response) => {
-            return response.json();
-          })
-          .then((json) => {
-            setState((state) => ({ ...state, locationData: { ...json } }));
-          });
-      }
-    }
-  }, [state]);
-
-  useEffect(() => {
+    console.warn('setinterval for weather triggered');
     const locationInterval = setInterval(() => {
       fetch(
-        'https://api.openweathermap.org/data/2.5/weather?lat=' +
-          state.location.latitude +
-          '&lon=' +
-          state.location.longitude +
-          `&appid=${state.weatherKey}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${state.location.latitude}&lon=${state.location.longitude}&appid=${state.weatherKey}`
       )
         .then((response) => {
           return response.json();
@@ -338,13 +330,15 @@ const StateContextProvider = (props: any) => {
         .then((json) => {
           setState((state) => ({ ...state, locationData: { ...json } }));
         });
+      console.time('weather refresh');
     }, 5000);
     return () => {
       clearInterval(locationInterval);
     };
     // eslint-disable-next-line
-  }, [state.locationData]);
+  }, []);
 
+  // Add session ID listener - used for distance calc, update state
   useEffect(() => {
     forPullKey(state.pullKey).addSessionIdListener((sessionId) => {
       if (sessionId && sessionId !== state.sessionId) {
@@ -358,6 +352,7 @@ const StateContextProvider = (props: any) => {
     //eslint-disable-next-line
   }, []);
 
+  // Debug - show session ID in console and warn distance reset has occurred
   //eslint-disable-next-line
   useEffect(() => {
     if (prevSessionId && state.sessionId) {
@@ -369,6 +364,7 @@ const StateContextProvider = (props: any) => {
     }
   });
 
+  // Get distance between pairs of lat/lon
   const getDistanceFromLatLonInKm = (
     lat1: number,
     lon1: number,
@@ -389,10 +385,12 @@ const StateContextProvider = (props: any) => {
     return d;
   };
 
+  // Return radians from degrees
   const deg2rad = (deg: number) => {
     return deg * (Math.PI / 180);
   };
 
+  // Calculate distance changes, update state
   // eslint-disable-next-line
   useEffect(() => {
     if (

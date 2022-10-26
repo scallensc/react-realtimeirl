@@ -83,29 +83,32 @@ https://rlal.net/?timezoneKey=KEYHERE&mapboxKey=KEYHERE&pullKey=KEYHERE&weatherK
 
 ### Optional params ():
 
+- debug debug= 1 || 0 - enable debug console logs for several things, e.g. total distance/session ID resets
+  `https://rlal.net/?mandatorystuff....&debug=1`
+
 - map map= 1 || 0 - enable or disable map display
   `https://rlal.net/?mandatorystuff....&map=1`
 
 - metrics - enable or disable metrics - metrics= 1 || 0
   `https://rlal.net/?mandatorystuff....&metrics=1`
 
-  - altitude - altitude= 1 || 0
-    `https://rlal.net/?mandatorystuff....&altitude=1`
+- altitude - altitude= 1 || 0
+  `https://rlal.net/?mandatorystuff....&altitude=1`
 
-  - distance - distance= 1 || 0
-    `https://rlal.net/?mandatorystuff....&distance=1`
+- distance - distance= 1 || 0
+  `https://rlal.net/?mandatorystuff....&distance=1`
 
-  - heading - heading= 1 || 0
-    `https://rlal.net/?mandatorystuff....&heading=1`
+- heading - heading= 1 || 0
+  `https://rlal.net/?mandatorystuff....&heading=1`
 
-  - heartrate - heartrate= 1 || 0
-    `https://rlal.net/?mandatorystuff....&heartrate=1`
+- heartrate - heartrate= 1 || 0
+  `https://rlal.net/?mandatorystuff....&heartrate=1`
 
-  - speed - speed= 1 || 0
-    `https://rlal.net/?mandatorystuff....&speed=1`
+- speed - speed= 1 || 0
+  `https://rlal.net/?mandatorystuff....&speed=1`
 
-  - imperial - imperial= 1 || 0 - use imperial units instead of metric
-    `https://rlal.net/?mandatorystuff....&imperial=1`
+- imperial - imperial= 1 || 0 - use imperial units instead of metric
+  `https://rlal.net/?mandatorystuff....&imperial=1`
 
 <br/>
 
