@@ -37,6 +37,10 @@ Then:
 In OBS, add a browser source, pointed to http://localhost:3000 (Obviously, if building and serving from elsewhere, point it to there instead)  
 Set the size to 1920x1080.
 
+Please ensure that both these values are unchecked in your OBS source:  
+`☐ Shutdown source when not visible`
+`☐ Refresh browser when scene becomes active`
+
 Done!
 
 If you want to have a poke around at the data being pulled in, I'd suggest adding the React devtools extension to chrome/firefox etc, there you can view the state the app is pulling in - again, just navigate to http://localhost:3000 with the devtools installed in your browser of choice.
