@@ -38,7 +38,7 @@ In OBS, add a browser source, pointed to http://localhost:3000 (Obviously, if bu
 Set the size to 1920x1080.
 
 Please ensure that both these values are unchecked in your OBS source:  
-`☐ Shutdown source when not visible`
+`☐ Shutdown source when not visible`  
 `☐ Refresh browser when scene becomes active`
 
 Done!
