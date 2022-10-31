@@ -71,6 +71,8 @@ Should you wish to change fonts, just visit https://fonts.google.com and use the
 
 To build, just run `yarn build` from the root of the project folder. copy the build folder to the web server of your choice. For the live version below, I've hosted it using a nodeJS/Express static server.
 
+You can also run the provided Dockerfile to serve the nodeJS app with Nginx.
+
 # Live version
 
 ## URL format for hosted version:
