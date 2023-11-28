@@ -1,0 +1,21 @@
+.streamelements-container {
+  overflow: visible;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  right: 0px;
+  top: 0px;
+  text-align: right;
+
+  font-family: 'Anek Latin', sans-serif;
+
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  will-change: transform;
+  transition: transform 0.1s linear;
+  font-size: 22px;
+}
+
+.se-heading {
+  font-size: 25px;
+}

@@ -1,0 +1,17 @@
+.rotator-container {
+  overflow: visible;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  right: 10px;
+  top: 80px;
+  text-align: right;
+
+  font-family: 'Anek Latin', sans-serif;
+
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  will-change: transform;
+  transition: transform 0.1s linear;
+}

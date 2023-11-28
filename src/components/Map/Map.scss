@@ -1,0 +1,24 @@
+.map-container {
+  position: absolute;
+  width: 256px;
+  height: fit-content;
+  bottom: 5px;
+  right: 5px;
+}
+
+.map3d-container {
+  width: 256px;
+  height: 256px;
+  box-sizing: border-box;
+}
+
+.map3d-marker {
+  width: 15px;
+  height: 15px;
+  background-color: cyan;
+  border-radius: 50%;
+}
+
+// .mapboxgl-control-container {
+//   display: none;
+// }

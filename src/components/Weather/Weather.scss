@@ -1,0 +1,39 @@
+.weather-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  text-align: right;
+  font-family: 'Anek Latin', sans-serif;
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  font-size: 20px;
+}
+
+.icon-container {
+  display: inline-flex;
+  align-items: center; // Aligns the SVG vertically in the center
+}
+
+.icon-main {
+  padding-top: 10px;
+
+  svg {
+    height: 2em;
+    width: 2em;
+  }
+}
+
+.icon {
+  svg {
+    height: 1.5em;
+    width: 1.5em;
+  }
+}
+
+.text {
+  display: inline-flex;
+  align-items: center; // Aligns the text vertically in the center
+  padding-bottom: 0.25em;
+}
