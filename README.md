@@ -335,4 +335,4 @@ const map = new mapboxgl.Map({
 
 ***Example output with `theme=mapbox-dark`, `metrics` options and `mapIs3d` enabled:***
 
-![](docs/default.png)
+![](docs/styled.png)

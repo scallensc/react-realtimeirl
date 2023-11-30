@@ -6,6 +6,10 @@ const getQueryParamFlag = (key) => {
   return queryParams.has(key.toLowerCase()) || queryParams.has(key.toUpperCase()) || queryParams.has(key);
 };
 
+const parseZoomLevels = (zoomLevelsString) => {
+  return zoomLevelsString.split(',').filter(pair => pair.includes('-'));
+};
+
 const flagStore = observable({
   disableAnimation: getQueryParamFlag('disableAnimation'),
   hideMap: getQueryParamFlag('hideMap'),
@@ -24,10 +28,12 @@ const flagStore = observable({
   showMetrics: getQueryParamFlag('showMetrics'),
   showSpeed: getQueryParamFlag('showSpeed'),
   splitDateTime: getQueryParamFlag('splitDateTime'),
+  streamElementsSubscribed: false,
   theme: queryParams.get('theme') || 'mapbox://styles/mapbox/streets-v12',
   timeAtBottom: getQueryParamFlag('timeAtBottom'),
   useImperial: getQueryParamFlag('useImperial'),
   zoomLevels: queryParams.get('zoomLevels') || '',
+  zoomLevelPairs: parseZoomLevels(queryParams.get('zoomLevels') || ''),
 });
 
 export default flagStore;

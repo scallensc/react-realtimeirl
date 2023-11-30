@@ -3,9 +3,13 @@
   justify-content: center;
   text-align: center;
   width: 100%;
-  font-family: 'Questrial', sans-serif;
+  font-family: 'Anek Latin', sans-serif;
   font-size: 20px;
   color: #ffffff;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   padding-block: 2px;
+
+  .time {
+    font-feature-settings: 'tnum';
+  }
 }

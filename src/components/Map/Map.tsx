@@ -29,7 +29,8 @@ const Map = () => {
   mapboxgl.accessToken = mapboxKey;
 
   useEffect(() => {
-    if (mapContainer.current && !map3D) {
+    if (mapContainer.current) {
+      mapContainer.current.innerHTML = '';
       const map = new mapboxgl.Map({
         style: theme,
         center: [location.longitude, location.latitude],
@@ -94,7 +95,6 @@ const Map = () => {
       };
 
       map.on('load', () => {
-        map.removeLayer('mapboxgl-control-container')
         map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
 
         map.addSource('dot-point', {
@@ -163,7 +163,7 @@ const Map = () => {
       map3D?.remove();
       setMap3D(null)
     };
-  }, [theme, heading, mapZoom]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [theme]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (map3D) {
@@ -173,7 +173,7 @@ const Map = () => {
         bearing: mapFollowsHeading ? heading : 0,
       });
     }
-  }, [location, heading, mapZoom, map3D]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [location, heading, mapZoom]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="map-container">
