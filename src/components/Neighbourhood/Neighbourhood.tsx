@@ -33,6 +33,7 @@ const Neighbourhood = () => {
       </div>
     );
   } else {
+    console.log(globalStore.location.get())
     return (
       <animated.div className="neighbourhood-container" style={neighbourhoodProps}>
         <div className="neighbourhood"><hr />{styledText}<hr /></div>
