@@ -64,9 +64,9 @@ const Map = () => {
           if (this.context) {
             const context = this.context;
             const colours = {
-              mainFill: 'rgba(0, 255, 255, 1)',
+              mainFill: 'rgba(255, 0, 0, 1)',
               outerFill: 'rgba(96, 96, 96, 1)',
-              pulse: { red: 96, green: 96, blue: 96, alpha: 1 }
+              pulse: { red: 96, green: 96, blue: 96, alpha: 1 },
             }
             if (pulseMarker) {
               // Draw the outer circle.

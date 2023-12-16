@@ -1,5 +1,5 @@
 FROM node:18.18.2 as build-deps
-RUN git clone https://github.com/scallensc/react-realtimeirl
+#RUN git clone https://github.com/scallensc/react-realtimeirl
 WORKDIR "/react-realtimeirl"
 COPY . .
 RUN yarn && yarn build

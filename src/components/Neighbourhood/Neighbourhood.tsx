@@ -18,7 +18,7 @@ const Neighbourhood = () => {
 
   const renderWithMixedFonts = (text) => {
     return text.split(/(\s+)/).map((word, index) => {
-      const style = isJapanese(word) ? { fontFamily: "'Hiragino Kaku Gothic Pro', sans-serif" } : { fontFamily: "'Blinker', sans-serif" };
+      const style = isJapanese(word) ? { fontFamily: "'Hiragino Kaku Gothic Pro', sans-serif" } : { fontFamily: "'Blippo', sans-serif" };
       return <span key={index} style={style}>{word}</span>;
     });
   };
