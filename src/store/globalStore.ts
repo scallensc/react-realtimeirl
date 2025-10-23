@@ -11,7 +11,7 @@ const globalStore = observable({
   distance: 0,
   geocode: {},
   heading: 0,
-  heartrate: 0,
+  heartRate: 0,
   location: { latitude: 0, longitude: 0 },
   locationData: { ...defaultWeatherValues },
   neighbourhood: '',
