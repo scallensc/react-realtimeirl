@@ -7,6 +7,7 @@ import keyStore from '@store/keyStore';
 interface IListenerProps {
   altitude: { EGM96: number, WGS84: number };
   heading: number;
+  heartRate: number;
   location: { latitude: number, longitude: number };
   reportedAt: number;
   speed: number;
@@ -25,6 +26,7 @@ const useListener = () => {
         ...prevState,
         altitude: data.altitude,
         heading: data.heading,
+        heartRate: data.heartRate,
         location: data.location,
         speed: (data.speed * 3.6),
       }));
